@@ -13,7 +13,7 @@ public:
 	}
 
 private:
-	int newUser(string username, string password)
+	void newUser(string username, string password)
 	{
 		cout << "Creating new user..\n";
 	}
