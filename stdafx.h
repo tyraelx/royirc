@@ -19,5 +19,5 @@ using namespace std;
 
 #include "Roy.h"
 #include "commands.h"
-#include "user.h"
+#include "client.h"
 #include "interface.h"
