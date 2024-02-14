@@ -1,6 +1,6 @@
 #include "commands.h"
 
-int Commands::attempt(std::string command, std::vector<std::string> args)
+int Commands::attempt(std::string *command, std::vector<std::string> *args)
 {
 	const int length = 2;
 
@@ -9,7 +9,7 @@ int Commands::attempt(std::string command, std::vector<std::string> args)
 		"exit"
 	};
 
-	int (Commands::*cmds[length])(std::vector<std::string>) = {
+	int (Commands::*cmds[length])(std::vector<std::string> *) = {
 		&Commands::nick,
 		&Commands::exit
 	};
@@ -21,7 +21,7 @@ int Commands::attempt(std::string command, std::vector<std::string> args)
 
 	for (int i = 0; i < length; i++)
 	{
-		if (command == names[i])
+		if (*command == names[i])
 		{
 			int test = (tmp.*cmds[i])(args);
 
@@ -35,16 +35,16 @@ int Commands::attempt(std::string command, std::vector<std::string> args)
 	}
 
 	if (match == 0)
-		std::cout << "Command not found: " + command << "\n\n";
+		std::cout << "Command not found: " << *command << "\n\n";
 
 	return exit;
 }
 
-int Commands::nick(std::vector<std::string> args)
+int Commands::nick(std::vector<std::string> *args)
 {
   std::cout << "Setting nickname..\n";
 
-	for (int i = 0; i < args.size(); i++)
+	for (int i = 0; i < args->size(); i++)
 	{
 		/*std::cout << "argument: " << args[i] << "\n";*/
 	}
@@ -52,7 +52,7 @@ int Commands::nick(std::vector<std::string> args)
 	return 0;
 }
 
-int Commands::exit(std::vector<std::string> args)
+int Commands::exit(std::vector<std::string> *args)
 {
 	return 1;
 }

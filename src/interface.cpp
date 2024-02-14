@@ -20,7 +20,7 @@ int Interface::parse()
 
 	split.erase(split.begin());
 
-	return Commands::attempt(command, split);
+	return Commands::attempt(&command, &split);
 }
 
 int Interface::init()
